@@ -1,0 +1,108 @@
+body {
+    background-color: antiquewhite;
+    color: #2a2a2a;
+    font-style: italic;
+}
+
+.container {
+    padding: 25px;
+}
+
+.main {
+    padding: 20px 0;
+}
+
+.main .main__title {
+    text-align: center;
+    margin-bottom: 22px;
+    font-size: 35px;
+    letter-spacing: 1.5px;
+}
+
+.main .main__wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.main .input__wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 17px;
+}
+
+.main .input__wrapper:nth-child(2)   {
+    margin-bottom: 5px;
+}
+
+.main .input__wrapper > label {
+    font-size: 25px;
+    letter-spacing: 1.5px;
+}
+
+.main .main__input {
+    border: 1px solid black;
+    border-radius: 4px;
+    font-size: 22px;
+    width: 550px;
+    padding: 3px 7px;
+    transition: background-color 0.3s ease-in;
+}
+
+.main .main__input:not([disabled]):hover {
+    background-color: #f5e0c5;
+}
+
+.main .main__input[disabled]:hover {
+    background-color: #b5b5b5;
+}
+
+.main .main__input_origin.wrong {
+    border: none;
+    outline: 2px solid #632f2f;
+}
+
+.main .main__input_short {
+    width: 320px;
+}
+
+.main .main__input_short.active {
+    background-color: #f5e0c5;
+}
+
+.main .msg__text {
+    font-size: 18px;
+    color: #2f6334;
+    max-width: 550px;
+    height: 20px;
+}
+
+.main .msg__text.error {
+    color: #632f2f;
+}
+
+.main .main__button {
+    cursor: pointer;
+    border: 1px solid black;
+    padding: 5px 30px;
+    background-color: #adbaca87;
+    border-radius: 10px;
+    transition: background-color 0.5s ease;
+    width: 140px;
+    text-align: center;
+    margin: 25px auto 0;
+    font-size: 23px;
+    letter-spacing: 1px;
+}
+
+.main .main__button:hover {
+    background-color: #bbcfe787;
+}
+
+.footer .footer__text {
+    text-align: center;
+    font-size: 20px;
+}
