@@ -1,0 +1,17 @@
+RewriteEngine On
+RewriteBase /
+
+# Перенаправление с http на https
+#RewriteCond %{HTTPS} off
+#RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301]
+
+# Перенаправление с русских символов в запросе
+# и с каталогов "/" на главную
+RewriteCond %{REQUEST_URI} [А-я/]+
+RewriteRule [А-я]+ http://%{HTTP_HOST}/
+
+# Перенаправление с прочих запросов на redirect.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([a-zA-Z0-9]+)/?$ http://%{HTTP_HOST}/redirect.php?short=$1 [L]
+
