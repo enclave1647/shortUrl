@@ -30,7 +30,7 @@
 ### Используемые технологии - *<u>PHP 8.3, MySQL 5.7, JS</u>*
 
 
-[short.tg-apps.ru()](http://short.tg-apps.ru/)
+[enclave1647.ru()](http://enclave1647.ru/)
 ----------------------
 
 <br>
