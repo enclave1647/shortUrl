@@ -24,8 +24,14 @@ class DBAction
     // (для реализации Singleton)
     private function __construct() {
         try {
+            // Получаем доступы для подключения к БД из файла конфига
+            $dbHost = Config::get('db.host');
+            $dbName = Config::get('db.name');
+            $dbUser = Config::get('db.username');
+            $dbPass = Config::get('db.password');
+
             // Создаем подключение к БД (PDO)
-            $this->dbh = new PDO("mysql:host=HOST;dbname=DB_NAME", "USER", "PASSWORD");
+            $this->dbh = new PDO("mysql:host=$dbHost;dbname=$dbName", $dbUser, $dbPass);
 
             // Инициализируем остальные переменные в null
             $this->sth = null;
@@ -127,5 +133,4 @@ class DBAction
         // Уничтожаем объект
         self::$instance = null;
     }
-
 }
