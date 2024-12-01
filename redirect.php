@@ -5,6 +5,7 @@ namespace shorturl;
 use shorturl\classes\DBAction;
 
 require_once './classes/DBAction.php';
+require_once './classes/Config.php';
 
 // Вывод ошибок PHP
 ini_set('display_errors', '1');
