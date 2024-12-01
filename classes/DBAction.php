@@ -133,5 +133,4 @@ class DBAction
         // Уничтожаем объект
         self::$instance = null;
     }
-
 }
