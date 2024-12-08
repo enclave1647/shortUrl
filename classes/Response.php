@@ -46,7 +46,7 @@ class Response
         $this->preparedJSON = null;
     }
 
-    public function setStatus($status): void {
+    public function setStatus(bool $status): void {
         $this->status = $status;
     }
 
