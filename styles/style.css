@@ -107,6 +107,57 @@ body {
     font-size: 20px;
 }
 
+/*** Таблица ссылок ***/
+
+.links-table {
+    margin: 50px 0;
+}
+
+.links-table__table {
+    margin: 0 auto;
+    border-collapse: collapse;
+    font-size: 25px;
+}
+
+.links-table__th,
+.links-table__td {
+    border: 1px solid #68635d;
+    padding: 8px 8px 8px 8px;
+}
+
+.links-table__td {
+    font-style: normal;
+}
+
+.links-table__tr:first-child > th {
+    border-top: none;
+}
+
+.links-table__tr:first-child > th:first-child,
+.links-table__tr > td:first-child{
+    border-left: none;
+}
+
+.links-table__tr:first-child > th:last-child,
+.links-table__tr > td:last-child {
+    border-right: none;
+    width: 30%;
+}
+
+.links-table__tr:last-child > td {
+    border-bottom: none;
+}
+
+h1::selection,
+th::selection,
+td::selection,
+input::selection,
+label::selection,
+div::selection {
+    background: #68635d;
+    color: antiquewhite;
+}
+
 /*** @media ***/
 
 @media (max-width: 576px) {

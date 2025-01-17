@@ -16,7 +16,7 @@
                 <h1 class="main__title">Генератор коротких URL</h1>
                 <div class="main__wrapper">
                     <div class="input__wrapper">
-                        <?//<label for="longUrl">URL</label>?>
+                        <? //<label for="longUrl">URL</label>?>
                         <input id="longUrl" class="main__input main__input_origin" type="url" placeholder="Введите URL...">
                     </div>
                     <div class="input__wrapper">
@@ -31,6 +31,40 @@
                 </div>
                 <div id="btnSubmit" class="main__button">Submit</div>
             </div>
+            <section class="links-table">
+                <table class="links-table__table">
+                    <tr class="links-table__tr">
+                        <th class="links-table__th">№</th>
+                        <th class="links-table__th">Оригинальная ссылка</th>
+                        <th class="links-table__th">Короткая ссылка</th>
+                    </tr>
+                    <tr class="links-table__tr">
+                        <td class="links-table__td">1</td>
+                        <td class="links-table__td">https://developer.mozilla.org/ru/docs/Web/API/Node/textContent</td>
+                        <td class="links-table__td">uCdxldR</td>
+                    </tr>
+                    <tr class="links-table__tr">
+                        <td class="links-table__td">2</td>
+                        <td class="links-table__td">https://developer.mozilla.org/ru/docs/</td>
+                        <td class="links-table__td">GNdYdIA</td>
+                    </tr>
+                    <tr class="links-table__tr">
+                        <td class="links-table__td">3</td>
+                        <td class="links-table__td">https://wordsmall.ru/html-i-css/primery-stili-knopok-css.html</td>
+                        <td class="links-table__td">arcBpnF</td>
+                    </tr>
+                    <tr class="links-table__tr">
+                        <td class="links-table__td">4</td>
+                        <td class="links-table__td">https://developer.mozilla.org/ru/docs/s</td>
+                        <td class="links-table__td">rHvzuql</td>
+                    </tr>
+                    <tr class="links-table__tr">
+                        <td class="links-table__td">5</td>
+                        <td class="links-table__td">https://developer.mozilla.org/ru/</td>
+                        <td class="links-table__td">OMKlLDp</td>
+                    </tr>
+                </table>
+            </section>
         </main>
         <footer class="footer">
             <div class="container">
