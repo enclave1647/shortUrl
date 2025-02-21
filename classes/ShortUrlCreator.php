@@ -4,8 +4,6 @@ namespace shorturl\classes;
 
 require_once './classes/DBAction.php';
 require_once './classes/Response.php';
-require_once './classes/Config.php';
-
 
 /*** *************** Генератор коротких URL **************** ***
  *

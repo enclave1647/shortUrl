@@ -2,6 +2,8 @@
 
 namespace shorturl\classes;
 
+require_once 'Config.php';
+
 use PDO;
 use PDOException;
 use PDOStatement;
@@ -80,7 +82,11 @@ class DBAction
             // Выполняем запрос
             // Передаем (привязываем к запросу) массив параметров
             // Например, "SELECT :number", $params = ['number' => 123] ===> SELECT 123;
-            $dbAction->sth->execute($params);
+            if (!empty($params))
+                $dbAction->sth->execute($params);
+            // Если массив $params - пуст
+            // (нет переданных параметров)
+            else $dbAction->sth->execute();
 
         } catch (PDOException $e) {
             // В случае возникновения ошибки

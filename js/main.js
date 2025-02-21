@@ -80,6 +80,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         // Добавляем класс 'active' к Input с коротким URL
                         shortUrlInp.classList.add('active');
 
+                        // TODO: [Блок вывода ссылок в таблицу из БД]
+
                         // Если у блока сообщений есть класс 'error'
                         // (ранее была ошибка, сейчас нет)
                         if (msgDiv.classList.contains('error'))
