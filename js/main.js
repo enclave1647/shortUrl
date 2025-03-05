@@ -1,4 +1,4 @@
-import {getShortUrl} from './lib.js';
+import {sendRequest} from './lib.js';
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -13,6 +13,79 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Получаем блок для сообщений от сервера
     const msgDiv = document.getElementById('msg');
+
+    // Получаем таблицу для вывода всех ссылок (из БД)
+    const urlTableDOM = document.getElementById('links_table');
+
+    // Объект с опциями для запроса на сервер [fetch(objRequestOpt.url, objRequestOpt.init)]
+    const objRequestOpt = {
+          // Адрес для запроса
+          url: ''
+          // Параметры для fetch
+        , init: {}
+    };
+
+    // TODO: --- Блок вывода таблицы ссылок из БД
+
+    // TODO: +++ 1. Получаем данные с сервера (GET-запрос)
+
+    function renderUrlsTable () {
+        // Формируем опции запроса (на сервер)
+        objRequestOpt.url = '/getUrlsForTable.php';
+        objRequestOpt.init = {
+            method: 'GET',
+        }
+        // Отправляем запрос
+        sendRequest(objRequestOpt)
+            // После получения ответа
+            .then(response => {
+                console.log(response);
+
+                // TODO: +++ 2. Создаем DOM-элементы для заполнения таблицы
+                if (response.status === true) {
+
+                    // Создаем DOM-узел 'tbody' для таблицы ссылок
+                    const tbodyDOM = document.createElement('tbody');
+
+                    const tableHeaderDOM = urlTableDOM.querySelector('.links-table__header');
+
+                    tbodyDOM.appendChild(tableHeaderDOM);
+
+                    response.data.forEach((row, num) => {
+                        // Создаем строку tr
+                        const trDOM = document.createElement('tr');
+                        // Добавляем строке класс
+                        trDOM.classList.add('links-table__tr');
+
+                        for (let column in row) {
+                            const tdDOM = document.createElement('td');
+                            tdDOM.classList.add('links-table__td');
+                            tdDOM.append(document.createTextNode(row[column]));
+
+                            trDOM.append(tdDOM);
+                        }
+
+                        tbodyDOM.appendChild(trDOM);
+                    });
+
+                    // TODO: +++ 3. Переносим созданные DOM-элементы в таблицу
+
+                    if (urlTableDOM) {
+                        urlTableDOM.innerHTML = '';
+                        urlTableDOM.append(tbodyDOM);
+                    }
+
+
+                } else {
+                    // TODO: Добавить вывод ошибок (если статус !true)
+                }
+
+
+            });
+    }
+
+    renderUrlsTable();
+
 
     // Добавляем обработчик на Input ввода оригинального URL (input)
     longUrlInp.addEventListener('input', (e) => {
@@ -36,9 +109,10 @@ document.addEventListener('DOMContentLoaded', () => {
         // Получаем значение оригинально URL из Input
         const longUrl = longUrlInp.value.trim();
 
-        // TODO: +++ сделать валидацию введенного URL
-
+        // TODO: --- Добавить блок обновления таблицы ссылок из БД
         // TODO: --- сделать проверку на рабочий URL
+
+        // TODO: +++ сделать валидацию введенного URL
         // TODO: проверку со стороны JS (через fetch или XMLHttpRequest)
         // TODO: блокирует политика CORS (можно сделать через сервер)
 
@@ -56,7 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!longUrl)
             // Добавляем placeholder
             longUrlInp.placeholder = 'Введите URL...';
-        // Иначе если введенный URL начинается не с 'http[s]://'
+        // Иначе, если введенный URL начинается не с 'http[s]://'
         else if (new RegExp('^https?:/{2}', 'i').test(longUrl) === false) {
             // Сбрасываем введенное значение
             longUrlInp.value = '';
@@ -64,7 +138,18 @@ document.addEventListener('DOMContentLoaded', () => {
             longUrlInp.placeholder = 'Введите корректный URL...';
         // Иначе - валидация пройдена
         // Получаем короткий URL с сервера
-        } else getShortUrl(longUrl)
+        } else {
+            // Формируем опции запроса (на сервер)
+            objRequestOpt.url = '/getShortUrl.php';
+            objRequestOpt.init = {
+                  method: 'POST',
+                  headers: {
+                      'Content-Type': 'application/json; charset=UTF-8',
+                  }
+                , body: JSON.stringify({longUrl: longUrl})
+            }
+            // Отправляем запрос
+            sendRequest(objRequestOpt)
                 // После получения ответа
                 .then(response => {
                     // Выводим ответ в консоль
@@ -80,7 +165,11 @@ document.addEventListener('DOMContentLoaded', () => {
                         // Добавляем класс 'active' к Input с коротким URL
                         shortUrlInp.classList.add('active');
 
-                        // TODO: [Блок вывода ссылок в таблицу из БД]
+
+                        // TODO: --- [Блок вывода/обновления таблицы ссылок из БД]
+                        renderUrlsTable();
+
+                        // TODO: END 05.03.2025 03:42
 
                         // Если у блока сообщений есть класс 'error'
                         // (ранее была ошибка, сейчас нет)
@@ -96,7 +185,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     // Выводим сообщение от сервера
                     msgDiv.textContent = response.msg;
                 });
-
+        }
     });
 
 });

@@ -24,16 +24,21 @@ $options = array();
 // Подготавливаем запрос
 $options = [
     // Получаем все строки из таблицы urls
-    "sql" => "SELECT * FROM urls",
+    "sql" => "SELECT 
+                *
+              FROM urls as u
+              ORDER BY u.id DESC",
 ];
 
 // Выполняем подготовленный запрос
 $arrDataFormDB = DBAction::query($options)->as_array();
 
 // Если данные из БД не получены - выходим с сообщением
-!empty($arrDataFormDB) or die('Данные из БД не получены');
+!empty($arrDataFormDB) or
+    // TODO: Добавить отправку объекта Response со статусом false
+    die('Данные из БД не получены');
 
-// TODO: 2 Формируем объект Response для отправки
+// TODO: 2. Формируем объект Response для отправки клиенту (и отправляем)
 
 (new Response(
      status: true
@@ -42,5 +47,5 @@ $arrDataFormDB = DBAction::query($options)->as_array();
 ))->prepare()->send(die: true);
 
 
-// TODO: 3 Отправляем полученные из БД ссылки клиенту
+
 

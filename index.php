@@ -32,8 +32,8 @@
                 <div id="btnSubmit" class="main__button">Submit</div>
             </div>
             <section class="links-table">
-                <table class="links-table__table">
-                    <tr class="links-table__tr">
+                <table id="links_table" class="links-table__table">
+                    <tr class="links-table__tr links-table__header">
                         <th class="links-table__th">№</th>
                         <th class="links-table__th">Оригинальная ссылка</th>
                         <th class="links-table__th">Короткая ссылка</th>

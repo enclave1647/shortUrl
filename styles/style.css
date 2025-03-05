@@ -127,6 +127,8 @@ body {
 
 .links-table__td {
     font-style: normal;
+    max-width: 800px;
+    word-wrap: break-word;
 }
 
 .links-table__tr:first-child > th {
@@ -141,7 +143,7 @@ body {
 .links-table__tr:first-child > th:last-child,
 .links-table__tr > td:last-child {
     border-right: none;
-    width: 30%;
+    width: 22%;
 }
 
 .links-table__tr:last-child > td {
